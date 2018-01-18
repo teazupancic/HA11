@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <table border='1'>
+            <tr>
+                <th>HTTP Methode</th>
+                <th>Beschreibung</th>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>Die GET-Methode fordert eine Darstellung der angegebenen Ressource an. GET-Requests werden nur dazu verwendet, Daten zu lesen und nicht zu ändern. Wenn sie auf diese Weise verwendet werden, gelten sie als sicher. Das heißt, sie können ohne Risiko der Datenänderung aufgerufen werden. Die Antwort auf eine GET-Anfrage kann zwischengespeichert werden; ein Cache kann es verwenden, um nachfolgende GET und HEAD zu befriedigen.</td>
+            </tr>
+            <tr>
+                <td>HEAD</td>
+                <td>Die HEAD-Methode ist gleich wie GET, außer dass der Server keinen Nachrichtentext (body) in der Antwort senden darf. Wie bei einer GET-Methode kann auch eine HEAD-Methode zwischengespeichert werden.</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>Die POST-Methode wird verwendet, um eine Entität an die angegebene Ressource zu senden, was häufig eine Statusänderung oder Nebeneffekte auf dem Server verursacht. Wir erstellen eine untergeordnete Ressource für eine andere (z. B. übergeordnete, parent) Ressource. Beispiele: 1.Bereitstellen von Feldern, die in ein HTML-Formular für einen Datenverarbeitungsprozess eingegeben werden, 2.Senden einer Nachricht an eine Newsgroup, eine Mailingliste, einen Blog oder eine ähnliche Gruppe von Artikeln. 3.Erstellen einer neuen Ressource, die vom Ursprungsserver noch identifiziert werden muss. 4.Daten an die vorhandene Repräsentation einer Ressource anhängen.</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>Wird verwendet, um eine Repräsentation der ursprünglichen Ressource zu aktualisieren (update). Wenn die Ressource nicht existiert, wird mit PUT eine erstellt. Die Methode ist nicht sicer, weil sie die Daten modifiziert. Put ist nicht im Cache speicherbar.</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>Es wird verwendet, um eine durch einen URI identifizierte Ressource zu löschen. Wenn man DELETE für eine Ressource ein zweites Mal aufruft, wird oft eine 404 (nicht gefunden) zurückgegeben. Wenn die Zielressource über eine oder mehrere aktuelle Darstellungen verfügt, werden sie möglicherweise vom Ursprungsserver zerstört oder nicht. Relativ wenige Ressourcen ermöglichen die DELETE-Methode.</td>
+            </tr>
+            <tr>
+                <td>CONNECT</td>
+                <td>Die CONNECT-Methode baut einen Tunnel zu dem Server auf, der von der Zielressource identifiziert wird. Tunnel werden häufig verwendet, um eine virtuelle End-to-End-Verbindung über einen oder mehrere Proxies zu erstellen, die dann mithilfe von TLS gesichert werden können. Die meisten Ursprungsserver implementieren CONNECT nicht.</td>
+            </tr>
+            <tr>
+                <td>OPTIONS</td>
+                <td>Beschreibt die Kommunikationsoptionen für die Zielressource. Mit dieser Methode kann ein Client die Optionen und / oder Anforderungen ermitteln, die einer Ressource oder den Funktionen eines Servers zugeordnet sind. Ein Server, der eine erfolgreiche Antwort auf OPTIONS generiert, sollte Headerfelder senden, die möglicherweise vom Server implementierte optionale Funktionen anzeigen.</td>
+            </tr>
+            <tr>
+                <td>TRACE</td>
+                <td>Die TRACE-Methode fordert eine entfernte Rückmeldung der Anforderungsnachricht auf Anwendungsebene an. Mit TRACE kann der Client sehen, was am anderen Ende der Anforderungskette empfangen wird, und diese Daten für Test- oder Diagnoseinformationen verwenden.</td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <table border='1'>
+            <tr>
+                <th>Spezifikation spezielle Eigenschaften</th>
+                <th>Beschreibung</th>
+                <th>Methoden, die die Eigenschaft besitzen</th>
+            </tr>
+            <tr>
+                <td>"safe methods"</td>
+                <td>Request-Methoden gelten als "sicher", wenn ihre definierte Semantik schreibgeschützt ist.</td>
+                <td>GET, HEAD, OPTIONS und TRACE</td>
+            </tr>
+            <tr>
+                <td>"Idempotent Methods"</td>
+                <td>Die Methode kann mehrmals ohne unterschiedliche Ergebnisse aufgerufen werden.</td>
+                <td>PUT, DELETE + sichere Methoden</td>
+            </tr>
+            <tr>
+                <td>"Cacheable Methods"</td>
+                <td>Methoden können als "cachefähig" definiert werden, um anzuzeigen, dass Antworten auf sie für die zukünftige Wiederverwendung gespeichert werden dürfen.</td>
+                <td>GET, HEAD und POST</td>
+            </tr>
+        </table>
+    </body>
+</html>
