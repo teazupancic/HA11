@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <!-- <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.snet.tu-berlin.de&amp;layout=standard&amp;show_faces=false&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden;"> </iframe> -->
+        
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.snet.tu-berlin.de/"><img src="facebook_icon.png" alt="can not load image" width="50" height="50"></a> 
+
+    </body>
+</html>
+
+<!--Geladen werden: html Datei, js datei, png datei und eine andere (etwas auf facebook).
+Eine Anfrage (like.php....) wird an http://www.facebook.com/... gesendet und die Anfrage für png
+wird hier gesendet: https://static.xx.fbcdn.net/rsrc.php/v3/yn/r/lH1ibRl5GKq.png (auch etwas von fb), js request ist ähnlich
+-> Browser sendet mehrere requests, manche nicht an unser Server (https://webtech-teazupancic.c9users.io/HA11/11_2.html) sondern an facebook.-->
+
+<!-- erst werden nur html und facebook_icon.png geladen (beider vom https://webtech-teazupancic.c9users.io/HA11/11_2.html) 
+und beim klick werden auch andere Dateien geladen (Anfragen an facebook, zurück bekommen wir css, png, js und andere), sehr viele Dateien werden geladen 
+und jetzt ist facebook login (eine andere seite) als früher geladen--> 
