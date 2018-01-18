@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+    <form>Thema:
+        <label>
+            <input type="checkbox" name="topicBug" checked/>Fehlermeldung
+        </label>
+        <label>
+            <input type="checkbox" name="topicBlog" />Blog
+        </label><br>
+        <label>Betreff:
+            <input type="text" name="subject"/>
+        </label><br>
+        <label>Nachricht:<br>
+            <textarea name="message" cols="50" rows="5"></textarea>
+        </label><br>
+        <button formmethod="get" formenctype="" formaction="">Button</button><br>
+        <button formmethod="get" formenctype="application/x-www-form-urlencoded">Button</button><br>
+        <button formmethod="post" formenctype="application/x-www-form-urlencoded">Button</button><br>
+        <button formmethod="get" formenctype="multipart/form-data">Button</button><br>
+        <button formmethod="post" formenctype="multipart/form-data">Button</button><br>
+        <button formmethod="get" formenctype="text/plain">Button</button><br>
+        <button formmethod="post" formenctype="text/plain">Button</button><br>
+        <br><br>
+        <button type="reset">Zurücksetzen</button>
+    </form>
+    </body>
+</html>

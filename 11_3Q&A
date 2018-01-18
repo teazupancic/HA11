@@ -1,0 +1,101 @@
+The formaction attribute specifies where to send the form-data when a form is submitted.
+The formenctype attribute specifies how form-data should be encoded before sending it to a server. 
+The formmethod attribute specifies which HTTP method to use when sending the form-data (get or post).
+
+1.Geben Sie im Attribut formaction einen Wert ein. Was beeinflusst dieser Wert? (Hinweis:
+Der Browser wird nach einem Klick auf den Button eine Fehlerseite anzeigen, die Sie
+ignorieren können. Wichtig ist die bewirkte Veränderung in der Kommunikation. Nutzen
+Sie einfach den Zurück-Button des Browsers um wieder auf die ursprüngliche Seite zu
+gelangen.) Recherchieren Sie außerdem den allgemeinen Aufbau einer HTTP-URL. Was sind die
+Bestandteile?
+
+Ohne action wird beim klicken status 200 und document zurückgegeben. (url https://webtech-teazupancic.c9users.io/HA11/11_3.html?topicBug=on&subject=&message=).
+aber nichts ist passiert. 
+Mit formaction="/action_page.php"  wird error 404 (not found zurückgegeben).
+
+HTTP-URL (Uniform Resource Locator)
+
+http://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#SomewhereInTheDocument
+
+http: => protocol
+www.example.com => domain name
+:80 => port
+path/to/myfile.html => Pfad zur Datei
+?key1=value1&key2=value2 => parameters (Schlüssel / Wert-Paare getrennt mit dem Symbol &, Der Web-Server kann diese Parameter verwenden, um vor der Rückgabe der Ressource zusätzliche Funktionen auszuführen.
+#SomewhereInTheDocument => anchor (Ein Anker stellt eine Art "Lesezeichen" innerhalb der Ressource dar und gibt dem Browser die Anweisungen, um den Inhalt anzuzeigen, der sich an diesem "mit Lesezeichen versehenen" Ort befindet.)
+
+2. Was bedeuten die Attribute formmethod und formenctype? Welche Werte sind
+jeweils erlaubt? Geben Sie in die vorhandenen Eingabeelemente einen beliebigen, kleinen
+Text ein. Testen Sie die verschiedenen Werte mit Hilfe der vorgegebenen Buttons.
+Kombinieren Sie die möglichen Werte von formmethod mit den Möglichkeiten von
+formenctype. (Beachten Sie auch den unten stehenden Hinweis!) Wann wirkt der Wert
+von formenctype? Wo sind die Änderungen in der Netzwerk-Konsole sichtbar und was
+verändert sich? Wo werden die Daten der unterschiedlichen Eingabeelemente übertragen
+und wie werden diese voneinander abgegrenzt?
+
+formmethod: gibt an, welche HTTP-Methode beim Senden der Formulardaten verwendet werden soll (get oder post).
+formenctype: gibt an, wie Formulardaten codiert werden sollen, bevor sie an einen Server gesendet werden.
+
+Werte erlaubt: 
+formmethod: GET (Fügt Formulardaten in Name / Wert-Paaren in die URL ein, Die Länge einer URL ist begrenzt, man soll niemals GET verwenden, um sensible Daten zu senden! (wird in der URL sichtbar sein))
+            POST (Hängt Formulardaten innerhalb des HTTP-Requests an (Daten werden nicht in der URL angezeigt), Hat keine Größenbeschränkungen)
+formenctype:application/x-www-form-urlencoded (default, Alle Zeichen werden vor dem Senden codiert)
+            multipart/form-data (Keine Zeichen sind codiert)
+            text/plain (Leerzeichen werden in "+" Symbole umgewandelt, aber keine Zeichen sind codiert)
+            
+*Get & default formenctype: [url]...&subject=Hallo&message=Das+ist+eine+Nachricht.
+
+*Post & default formenctype: in header (topicBug=on&subject=cccc&message=dddd (als source)), alles bleibt gleich auf der Seite.
+
+*Get & multipart/form-data: url + header bleibt gleich?
+
+*Post & multipart/form-data: in header (in request payload), alles bleibt gleich auf der Seite:
+(------WebKitFormBoundaryj8IGATT6wAw9FAgy
+
+Content-Disposition: form-data; name="topicBug"
+
+on
+------WebKitFormBoundaryj8IGATT6wAw9FAgy
+Content-Disposition: form-data; name="subject"
+
+cccc
+------WebKitFormBoundaryj8IGATT6wAw9FAgy
+Content-Disposition: form-data; name="message"
+
+dddd
+------WebKitFormBoundaryj8IGATT6wAw9FAgy--)
+
+*Get & text/plain: ...subject=aaaa+aaaa&message=bbbb+bbbb+bbbb gleich? header auch gleich?
+
+*Post & text/plain: request payload= topicBug=on&subject=aaaa+aaaa&message=bbbb+bbbb+bbbb gleich? header auch gleich? Unterschied von GET nur die Methode?
+
+3. Wiederholung: Was ist die Semantik von HTTP GET und POST?
+Wenn Sie die Semantik kennen, nennen Sie mindestens ein Beispiel (Anwendungsfall),
+wann es sinnvoll ist das method-Attribut vom form-Element auf die jeweiligen Werte
+zu setzen.
+
+get ==> 1. wenn die Daten nicht empfindlich sind (es wird in der URL sichtbar sein),
+        2. ist es nützlich für Formularübergaben, wo ein Benutzer das Ergebnis als Lesezeichen speichern möchte,
+        3. wenn wir wenig Daten haben (es gibt ein Limit).
+        
+        Beispiel: form mit checkboxen, farben...
+
+post ==>1. sicherer als bekommen,
+        2. keine Größenbeschränkungen.
+        
+        Beispiel: form mit textarea (Fragen, komentare...)
+ 
+        
+4. Mit dem enctype-Attribut kann die Kodierung der Daten auf das sogenannte URLEncoding
+gesetzt werden. Informieren Sie sich über diese Art der Zeichenanpassung.
+Warum ist es notwendig? Wie wird kodiert?
+
+URLs können nur über das Internet mit dem ASCII-Zeichensatz gesendet werden.
+Da URLs oft Zeichen außerhalb des ASCII-Satzes enthalten, muss die URL in ein gültiges ASCII-Format konvertiert werden.
+Bei der URL-Codierung werden unsichere ASCII-Zeichen durch "%" gefolgt von zwei Hexadezimalziffern ersetzt.
+Beispiel: ö = %C3%B6
+
+5.Welches HTML-Attribut der Eingabe-Elemente gibt den Bezeichner (den Key bei Key=Value)
+der übertragenen Werte an?
+Name.
+
